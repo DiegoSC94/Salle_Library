@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Salle_Library</string>
+    <string name="nombreApp">Salle Library</string>
+    <string name="nombres">Ruben Carreño | Diego Santamarta</string>
 </resources>
