@@ -7,7 +7,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.view.Window;
 
 public class SplashMainActivity extends AppCompatActivity {
 
@@ -24,13 +23,14 @@ getSupportActionBar().hide();
 
                 // Start the next activity
                 Intent mainIntent = new Intent().setClass(
-                        SplashMainActivity.this, MainActivity.class);
+                        SplashMainActivity.this, LoginRegis.class);
                 startActivity(mainIntent);
 
 
                 finish();
             }
         };
+
         Timer timer = new Timer();
         timer.schedule(task, 3000);
 
