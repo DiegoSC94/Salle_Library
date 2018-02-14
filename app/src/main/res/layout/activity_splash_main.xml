@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,7 +15,8 @@
         android:text="@string/nombreApp"
         android:textSize="75sp"
         android:layout_centerHorizontal="true"
-        android:height="1"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
         />
 
     <ImageView
@@ -23,14 +24,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/books"
-        android:layout_weight="1"
+        android:layout_marginBottom="@id/NameApp"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nombres"
-        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         />
 
-</LinearLayout>
+</RelativeLayout>
