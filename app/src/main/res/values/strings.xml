@@ -2,7 +2,8 @@
     <string name="app_name">Salle_Library</string>
     <string name="nombreApp">Salle Library</string>
     <string name="nombres">Ruben Carreño | Diego Santamarta</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Log in</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
 </resources>

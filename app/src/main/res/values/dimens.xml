@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="titulo">70sp</dimen>
+    <dimen name="textoBotones">18sp</dimen>
+    <dimen name="marginUserPass">60dp</dimen>
+    <dimen name="margin40">40dp</dimen>
 </resources>
