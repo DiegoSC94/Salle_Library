@@ -1,6 +1,8 @@
 package rubendiego.salle_library;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,8 +25,14 @@ public class Register extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false);
-
+        View view=inflater.inflate(R.layout.fragment_register, container, false);
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        //aqui poner los compos del editText
+        editor.putString("email", "modificado@email.com");
+        editor.putString("nombre", "Prueba");
+        editor.apply();
+        return view;
     }
 
 }

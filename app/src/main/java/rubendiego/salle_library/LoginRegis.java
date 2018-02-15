@@ -11,12 +11,8 @@ public class LoginRegis extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_regis);
-        SharedPreferences prefs =
-                getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("email", "modificado@email.com");
-        editor.putString("nombre", "Prueba");
-        editor.commit();
+
+
     }
 }
