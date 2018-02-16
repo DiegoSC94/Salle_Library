@@ -28,7 +28,7 @@ public class Login extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_login, container, false);
-        login=view.findViewById(R.id.iniciar);
+        login=(Button) view.findViewById(R.id.iniciar);
         register=view.findViewById(R.id.register);
         register.setOnClickListener(this);
         login.setOnClickListener(this);
@@ -47,8 +47,6 @@ public class Login extends Fragment implements View.OnClickListener {
                 transation.replace(R.id.fragment_login, register);
                 transation.addToBackStack(null);
                 transation.commit();
-
-                Toast.makeText(getActivity(), "dfDFDSfDS", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iniciar:
                 Intent intent = new Intent(getActivity(),MainPage.class);
