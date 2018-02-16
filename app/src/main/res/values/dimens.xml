@@ -4,5 +4,4 @@
     <dimen name="textoBotones">18sp</dimen>
     <dimen name="marginUserPass">60dp</dimen>
     <dimen name="margin40">40dp</dimen>
-    <dimen name="linea">5dp</dimen>
 </resources>
