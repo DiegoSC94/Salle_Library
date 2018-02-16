@@ -35,19 +35,20 @@
 
     </LinearLayout>
 
+
     <ImageView
         android:id="@+id/separador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/separador"
-        android:layout_alignBottom="@id/botonesLoginRegister"
+        android:layout_below="@id/botonesLoginRegister"
         />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/separador"
+        android:layout_below="@id/botonesLoginRegister"
         android:layout_marginTop="@dimen/marginUserPass"
         android:layout_marginStart="@dimen/margin40"
         android:layout_marginEnd="@dimen/margin40"

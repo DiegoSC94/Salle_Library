@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 /**
@@ -46,6 +47,7 @@ public class Login extends Fragment implements View.OnClickListener {
                 transation.replace(R.id.fragment_login, register);
                 transation.addToBackStack(null);
                 transation.commit();
+                Toast.makeText(getActivity(),"hola",Toast.LENGTH_LONG).show();
                 break;
             case R.id.iniciar:
                 Intent intent = new Intent(getActivity(),MainPage.class);
