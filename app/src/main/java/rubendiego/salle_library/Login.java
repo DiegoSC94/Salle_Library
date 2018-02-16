@@ -43,7 +43,7 @@ public class Login extends Fragment implements View.OnClickListener {
 
                 FragmentTransaction transation = getActivity().getFragmentManager().beginTransaction();
 
-                transation.replace(R.id.fragment_register, register);
+                transation.replace(R.id.fragment_login, register);
                 transation.addToBackStack(null);
                 transation.commit();
                 break;
