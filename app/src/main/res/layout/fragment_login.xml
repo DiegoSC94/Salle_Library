@@ -39,7 +39,7 @@
 
     <ImageView
         android:id="@+id/separador"
-        android:layout_width="@dimen/linea"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/separador"
         android:layout_below="@id/botonesLoginRegister"
