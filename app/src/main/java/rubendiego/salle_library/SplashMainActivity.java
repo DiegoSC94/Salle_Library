@@ -16,7 +16,7 @@ public class SplashMainActivity extends AppCompatActivity {
 
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_splash_main);
-getSupportActionBar().hide();
+        getSupportActionBar().hide();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
