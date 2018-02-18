@@ -17,7 +17,7 @@ public class LoginRegis extends Activity {
         Fragment login=new Login();
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.activity_login_regis,login);
+        transaction.replace(R.id.activity_login_regis,login);
         transaction.addToBackStack(null);
         transaction.commit();
 

@@ -1,6 +1,7 @@
 package rubendiego.salle_library;
 
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -16,7 +19,9 @@ import android.widget.Button;
  */
 public class Register extends Fragment implements View.OnClickListener{
 
-    private Button registro;
+    private Button registro,login;
+    private EditText user,pass;
+
 
     public Register() {
         // Required empty public constructor
@@ -30,7 +35,11 @@ public class Register extends Fragment implements View.OnClickListener{
         View view=inflater.inflate(R.layout.fragment_register, container, false);
         registro = view.findViewById(R.id.iniciar_regis);
         registro.setOnClickListener(this);
+        login = view.findViewById(R.id.login);
+        login.setOnClickListener(this);
 
+        user = view.findViewById(R.id.username);
+        pass = view.findViewById(R.id.password);
 
 
 
@@ -42,12 +51,29 @@ public class Register extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iniciar_regis:
-                SharedPreferences prefs = this.getActivity().getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
+
+                SharedPreferences datos = this.getActivity().getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
+
                 //aqui poner los compos del editText
-                editor.putString("email", "modificado@email.com");
-                editor.putString("nombre", "Prueba");
-                editor.apply();
+                String userName,passName;
+                userName = user.getText().toString();
+                passName=pass.getText().toString();
+
+                SharedPreferences.Editor editor = datos.edit();
+
+                editor.putString("username", userName);
+                editor.putString("password", passName);
+                editor.commit();
+                break;
+            case R.id.login:
+                Fragment login = new Login();
+
+                FragmentTransaction transation = getActivity().getFragmentManager().beginTransaction();
+
+                transation.replace(R.id.activity_login_regis, login);
+                transation.addToBackStack(null);
+                transation.commit();
+                break;
         }
     }
 }
