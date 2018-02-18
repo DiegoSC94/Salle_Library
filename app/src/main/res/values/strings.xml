@@ -6,4 +6,7 @@
     <string name="register">Register</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
+    <string name="instruccion">Introduce el título de un libro</string>
+    <string name="titulo_del_libro">Título del libro</string>
+    <string name="buscar">Buscar</string>
 </resources>
