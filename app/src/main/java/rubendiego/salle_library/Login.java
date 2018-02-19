@@ -1,6 +1,7 @@
 package rubendiego.salle_library;
 
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +33,14 @@ public class Login extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_login, container, false);
+        boolean sesionActiva = obtenerValoresSesion(getActivity());
+        if(sesionActiva){
+            //Abre pantalla principal.
+            Intent myIntent = new Intent(getActivity(), MainPage.class);
+            startActivity(myIntent);
+        }
+
+
         login=(Button) view.findViewById(R.id.iniciar);
         register=view.findViewById(R.id.register);
         register.setOnClickListener(this);
@@ -42,6 +51,11 @@ public class Login extends Fragment implements View.OnClickListener {
 
 
         return view;
+    }
+
+    private boolean obtenerValoresSesion(Activity activity) {
+        SharedPreferences sesion = getActivity().getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
+        return  sesion.getBoolean("sesion", false); //valor default false
     }
 
     @Override
@@ -62,8 +76,14 @@ public class Login extends Fragment implements View.OnClickListener {
                 if(user.getText().toString().equals(datos.getString("username","ho hay info")) ){
 
                     if(pass.getText().toString().equals(datos.getString("password","ho hay info"))){
+                        SharedPreferences.Editor editor = datos.edit();
+                        editor.putBoolean("sesion",true);
+                        editor.commit();
+
                         Intent intent = new Intent(getActivity(),MainPage.class);
                         startActivity(intent);
+
+                        Toast.makeText(getActivity(),"Has iniciado sesion",Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(getActivity(),"Este password no es el correcto para este usuario?",Toast.LENGTH_LONG).show();
                         pass.setText("");
