@@ -25,9 +25,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_main_page);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
-        logOff = findViewById(R.id.logOff);
-        logOff.setOnClickListener(this);
     }
     public  boolean onCreateOptionsMenu(Menu menu) {
 
@@ -56,9 +53,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.logOff:
 
-                break;
         }
     }
 }
