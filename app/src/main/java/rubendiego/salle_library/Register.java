@@ -64,6 +64,7 @@ public class Register extends Fragment implements View.OnClickListener{
                 editor.putString("username", userName);
                 editor.putString("password", passName);
                 editor.commit();
+                Toast.makeText(getActivity(),"Usuario"+userName+"se ha registrado correctamente",Toast.LENGTH_LONG).show();
                 break;
             case R.id.login:
                 Fragment login = new Login();
