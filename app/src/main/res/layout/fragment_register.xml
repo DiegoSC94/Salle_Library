@@ -53,6 +53,7 @@
         android:layout_marginStart="@dimen/margin40"
         android:layout_marginEnd="@dimen/margin40"
         android:hint="@string/username"
+        android:inputType="textPersonName"
         />
 
     <EditText
