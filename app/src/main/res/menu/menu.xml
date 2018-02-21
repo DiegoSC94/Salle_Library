@@ -6,8 +6,10 @@
     <item
         android:id="@+id/logOffBar"
         android:orderInCategory="101"
+        android:title="Log Off"
         android:icon="@drawable/ic_action_import"
-        android:title="logOffBar"
-        app:showAsAction="always" />
+        app:showAsAction="withText|ifRoom" />
+
+
 
 </menu>
