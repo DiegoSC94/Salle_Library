@@ -3,6 +3,7 @@ package rubendiego.salle_library;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -58,13 +59,29 @@ public class Register extends Fragment implements View.OnClickListener{
                 String userName,passName;
                 userName = user.getText().toString();
                 passName=pass.getText().toString();
+                if(userName.equals(datos.getString("username","ho hay info")) ) {
+                    Toast.makeText(getActivity(),"el usuario ya esta registrado",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    if(userName.isEmpty()){
+                        Toast.makeText(getActivity(),"Usuario no puede estar en blanco",Toast.LENGTH_LONG).show();
 
-                SharedPreferences.Editor editor = datos.edit();
+                    }else if (passName.isEmpty()){
+                        Toast.makeText(getActivity(),"Password no puede estar en blanco",Toast.LENGTH_LONG).show();
 
-                editor.putString("username", userName);
-                editor.putString("password", passName);
-                editor.commit();
-                Toast.makeText(getActivity(),"Usuario"+userName+"se ha registrado correctamente",Toast.LENGTH_LONG).show();
+                    }else{
+                        SharedPreferences.Editor editor = datos.edit();
+
+                        editor.putString("username", userName);
+                        editor.putString("password", passName);
+                        editor.commit();
+                        Toast.makeText(getActivity(),"Usuario "+userName+" se ha registrado correctamente",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getActivity(),MainPage.class);
+                        startActivity(intent);
+                    }
+                }
+
+
                 break;
             case R.id.login:
                 Fragment login = new Login();

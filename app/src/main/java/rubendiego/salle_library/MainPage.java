@@ -31,6 +31,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        
     }
     public  boolean onCreateOptionsMenu(Menu menu) {
 
