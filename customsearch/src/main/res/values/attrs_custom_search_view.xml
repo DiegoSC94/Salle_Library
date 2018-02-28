@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="CustomSearchView">
+        <attr name="hintText" format="string" />
+        <attr name="textSize" format="dimension" />
+    </declare-styleable>
+</resources>

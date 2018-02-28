@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import rubendiego.customsearch.CustomSearchView;
+
 
 public class MainPage extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +25,10 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        CustomSearchView customSearchView = (CustomSearchView) this.findViewById(R.id.customSearch);
+        customSearchView.setHintText("Buscar...");
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
     }

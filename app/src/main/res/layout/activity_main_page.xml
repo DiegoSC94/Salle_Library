@@ -28,6 +28,14 @@
         android:layout_below="@+id/my_toolbar"
         />
 
+    <rubendiego.customsearch.CustomSearchView
+        android:id="@+id/customSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/instruccion"
+        android:paddingBottom="40dp"
+        />
+<!--
     <EditText
         android:id="@+id/campoBusquedaLibro"
         android:layout_width="wrap_content"
@@ -52,12 +60,12 @@
         android:layout_below="@id/campoBusquedaLibro"
         android:layout_marginTop="@dimen/margin20"
         />
-
+-->
     <ListView
         android:id="@+id/listView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/botonBusqueda"
+        android:layout_below="@id/customSearch"
         android:layout_marginTop="@dimen/margin20"
         android:layout_alignParentBottom="true"
         >

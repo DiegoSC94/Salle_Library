@@ -18,7 +18,6 @@
         </activity>
         <activity android:name=".LoginRegis" />
         <activity android:name=".MainPage" />
-        <activity android:name=".SearchMainActivity"></activity>
     </application>
 
 </manifest>
