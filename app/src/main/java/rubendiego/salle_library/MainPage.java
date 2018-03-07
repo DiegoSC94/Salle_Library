@@ -12,11 +12,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import rubendiego.customsearch.CustomSearchView;
 
 
-public class MainPage extends AppCompatActivity implements View.OnClickListener {
+public class MainPage extends AppCompatActivity implements View.OnClickListener, CustomSearchView.OnSearchButtonClickedListener {
 
     private Button logOff;
 
@@ -63,5 +64,11 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()){
 
         }
+    }
+
+
+    @Override
+    public void onSearchButtonClicked(CustomSearchView source, String currentText) {
+        Toast.makeText(this, "Searching..." + currentText, Toast.LENGTH_SHORT).show();
     }
 }

@@ -22,6 +22,7 @@ public class CustomSearchView extends LinearLayout implements View.OnClickListen
     private EditText editText;
     private ImageButton buscar, cancel;
 
+    private OnSearchButtonClickedListener mCallback = null;
 
     public CustomSearchView(Context context) {
         super(context);
@@ -86,7 +87,17 @@ public class CustomSearchView extends LinearLayout implements View.OnClickListen
             editText.setText("");
         }
         else if (v.getId() == R.id.buscar){
-
+            if (mCallback != null){
+                mCallback.onSearchButtonClicked(this, editText.getText().toString());
+            }
         }
+    }
+
+    public interface OnSearchButtonClickedListener {
+         void onSearchButtonClicked(CustomSearchView source, String currentText);
+    }
+
+    public void setOnSearchButtonClickedListener(OnSearchButtonClickedListener listener){
+        mCallback = listener;
     }
 }
