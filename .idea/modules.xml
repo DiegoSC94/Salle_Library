@@ -5,8 +5,11 @@
       <module fileurl="file://$PROJECT_DIR$/Salle_Library.iml" filepath="$PROJECT_DIR$/Salle_Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/customadapterview/customadapterview.iml" filepath="$PROJECT_DIR$/customadapterview/customadapterview.iml" />
+      <module fileurl="file://D:\AndroidStudio\AndraoidStudioProjects\Salle_Library\customadapterview\customadapterview.iml" filepath="D:\AndroidStudio\AndraoidStudioProjects\Salle_Library\customadapterview\customadapterview.iml" />
       <module fileurl="file://$PROJECT_DIR$/customsearch/customsearch.iml" filepath="$PROJECT_DIR$/customsearch/customsearch.iml" />
+      <module fileurl="file://D:\AndroidStudio\AndraoidStudioProjects\Salle_Library\customsearch\customsearch.iml" filepath="D:\AndroidStudio\AndraoidStudioProjects\Salle_Library\customsearch\customsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/search/search.iml" filepath="$PROJECT_DIR$/search/search.iml" />
+      <module fileurl="file://D:\AndroidStudio\AndraoidStudioProjects\Salle_Library\search\search.iml" filepath="D:\AndroidStudio\AndraoidStudioProjects\Salle_Library\search\search.iml" />
     </modules>
   </component>
 </project>
