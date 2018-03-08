@@ -2,12 +2,12 @@ package rubendiego.salle_library;
 
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +21,8 @@ import android.widget.Toast;
  */
 public class Login extends Fragment implements View.OnClickListener {
 
-    private Button login,register;
-    private EditText user,pass;
+    private Button login, register;
+    private EditText user, pass;
 
     public Login() {
         // Required empty public constructor
@@ -32,17 +32,17 @@ public class Login extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         boolean sesionActiva = obtenerValoresSesion(getActivity());
-        if(sesionActiva){
+        if (sesionActiva) {
             //Abre pantalla principal.
             Intent myIntent = new Intent(getActivity(), MainPage.class);
             startActivity(myIntent);
         }
 
 
-        login=(Button) view.findViewById(R.id.iniciar);
-        register=view.findViewById(R.id.register);
+        login = (Button) view.findViewById(R.id.iniciar);
+        register = view.findViewById(R.id.register);
         register.setOnClickListener(this);
         login.setOnClickListener(this);
 
@@ -55,12 +55,12 @@ public class Login extends Fragment implements View.OnClickListener {
 
     private boolean obtenerValoresSesion(Activity activity) {
         SharedPreferences sesion = getActivity().getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
-        return  sesion.getBoolean("sesion", false); //valor default false
+        return sesion.getBoolean("sesion", false); //valor default false
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.register:
                 Fragment register = new Register();
 
@@ -73,24 +73,24 @@ public class Login extends Fragment implements View.OnClickListener {
             case R.id.iniciar:
                 SharedPreferences datos = this.getActivity().getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
 
-                if(user.getText().toString().equals(datos.getString("username","ho hay info")) ){
+                if (user.getText().toString().equals(datos.getString("username", "ho hay info"))) {
 
-                    if(pass.getText().toString().equals(datos.getString("password","ho hay info"))){
+                    if (pass.getText().toString().equals(datos.getString("password", "ho hay info"))) {
                         SharedPreferences.Editor editor = datos.edit();
-                        editor.putBoolean("sesion",true);
+                        editor.putBoolean("sesion", true);
                         editor.commit();
 
-                        Intent intent = new Intent(getActivity(),MainPage.class);
+                        Intent intent = new Intent(getActivity(), MainPage.class);
                         startActivity(intent);
 
-                        Toast.makeText(getActivity(),"Has iniciado sesion",Toast.LENGTH_LONG).show();
-                    }else{
-                        Toast.makeText(getActivity(),"Este password no es el correcto para este usuario?",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Has iniciado sesion", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getActivity(), "Este password no es el correcto para este usuario?", Toast.LENGTH_LONG).show();
                         pass.setText("");
                     }
 
-                }else{
-                    Toast.makeText(getActivity(),"no existe este usuario",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), "no existe este usuario", Toast.LENGTH_LONG).show();
                     user.setText("");
                     pass.setText("");
                 }

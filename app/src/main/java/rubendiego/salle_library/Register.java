@@ -1,12 +1,12 @@
 package rubendiego.salle_library;
 
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +18,10 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Register extends Fragment implements View.OnClickListener{
+public class Register extends Fragment implements View.OnClickListener {
 
-    private Button registro,login;
-    private EditText user,pass;
+    private Button registro, login;
+    private EditText user, pass;
 
 
     public Register() {
@@ -33,7 +33,7 @@ public class Register extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_register, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
         registro = view.findViewById(R.id.iniciar_regis);
         registro.setOnClickListener(this);
         login = view.findViewById(R.id.login);
@@ -43,40 +43,37 @@ public class Register extends Fragment implements View.OnClickListener{
         pass = view.findViewById(R.id.password);
 
 
-
-
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.iniciar_regis:
 
                 SharedPreferences datos = this.getActivity().getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
 
                 //aqui poner los compos del editText
-                String userName,passName;
+                String userName, passName;
                 userName = user.getText().toString();
-                passName=pass.getText().toString();
-                if(userName.equals(datos.getString("username","ho hay info")) ) {
-                    Toast.makeText(getActivity(),"el usuario ya esta registrado",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    if(userName.isEmpty()){
-                        Toast.makeText(getActivity(),"Usuario no puede estar en blanco",Toast.LENGTH_LONG).show();
+                passName = pass.getText().toString();
+                if (userName.equals(datos.getString("username", "ho hay info"))) {
+                    Toast.makeText(getActivity(), "el usuario ya esta registrado", Toast.LENGTH_LONG).show();
+                } else {
+                    if (userName.isEmpty()) {
+                        Toast.makeText(getActivity(), "Usuario no puede estar en blanco", Toast.LENGTH_LONG).show();
 
-                    }else if (passName.isEmpty()){
-                        Toast.makeText(getActivity(),"Password no puede estar en blanco",Toast.LENGTH_LONG).show();
+                    } else if (passName.isEmpty()) {
+                        Toast.makeText(getActivity(), "Password no puede estar en blanco", Toast.LENGTH_LONG).show();
 
-                    }else{
+                    } else {
                         SharedPreferences.Editor editor = datos.edit();
 
                         editor.putString("username", userName);
                         editor.putString("password", passName);
                         editor.commit();
-                        Toast.makeText(getActivity(),"Usuario "+userName+" se ha registrado correctamente",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getActivity(),MainPage.class);
+                        Toast.makeText(getActivity(), "Usuario " + userName + " se ha registrado correctamente", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getActivity(), MainPage.class);
                         startActivity(intent);
                     }
                 }

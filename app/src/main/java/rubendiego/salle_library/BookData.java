@@ -13,4 +13,7 @@ public class BookData {
     public static final String AUTHORS = "authors";
     public static final String IMAGE = "image";
 
+    public BookData(String id) {
+    }
+
 }

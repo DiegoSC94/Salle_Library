@@ -1,12 +1,12 @@
 package rubendiego.salle_library;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 
 public class SplashMainActivity extends AppCompatActivity {
 

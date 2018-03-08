@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -87,7 +88,10 @@ public class CustomSearchView extends LinearLayout implements View.OnClickListen
             editText.setText("");
         }
         else if (v.getId() == R.id.buscar){
+            Log.i(CustomSearchView.class.getSimpleName(),editText.getText().toString());
             if (mCallback != null){
+
+
                 mCallback.onSearchButtonClicked(this, editText.getText().toString());
             }
         }

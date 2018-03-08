@@ -1,12 +1,12 @@
 package rubendiego.salle_library;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,9 +33,12 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        
+        CustomSearchView hola=new CustomSearchView(this);
+    new BuscarLibro(hola);
+
     }
-    public  boolean onCreateOptionsMenu(Menu menu) {
+
+    public boolean onCreateOptionsMenu(Menu menu) {
 
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
@@ -43,15 +46,16 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.logOffBar:
                 SharedPreferences datos = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor=datos.edit();
-                editor.putBoolean("sesion",false);
+                SharedPreferences.Editor editor = datos.edit();
+                editor.putBoolean("sesion", false);
 
                 editor.commit();
-                Intent intent= new Intent(this,LoginRegis.class);
+                Intent intent = new Intent(this, LoginRegis.class);
                 startActivity(intent);
                 break;
             default:
@@ -59,13 +63,13 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
         }
     }
-
 
     @Override
     public void onSearchButtonClicked(CustomSearchView source, String currentText) {
