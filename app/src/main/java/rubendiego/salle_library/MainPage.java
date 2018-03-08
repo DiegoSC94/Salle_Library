@@ -28,7 +28,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.activity_main_page);
 
         CustomSearchView customSearchView = (CustomSearchView) this.findViewById(R.id.customSearch);
-        customSearchView.setHintText("Buscar...");
+        //customSearchView.setHintText("Buscar...");
+        customSearchView.setOnSearchButtonClickedListener(this);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
