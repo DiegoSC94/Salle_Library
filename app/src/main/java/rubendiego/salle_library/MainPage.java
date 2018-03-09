@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import rubendiego.customsearch.CustomSearchView;
@@ -20,6 +21,7 @@ import rubendiego.customsearch.CustomSearchView;
 public class MainPage extends AppCompatActivity implements View.OnClickListener, CustomSearchView.OnSearchButtonClickedListener {
 
     private Button logOff;
+    private ListView listView;
 
 
     @Override
@@ -30,12 +32,13 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         CustomSearchView customSearchView = (CustomSearchView) this.findViewById(R.id.customSearch);
         //customSearchView.setHintText("Buscar...");
         customSearchView.setOnSearchButtonClickedListener(this);
+        listView = findViewById(R.id.listView);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         CustomSearchView hola=new CustomSearchView(this);
-    new BuscarLibro(hola);
+
 
     }
 
@@ -75,5 +78,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onSearchButtonClicked(CustomSearchView source, String currentText) {
         Toast.makeText(this, "Searching..." + currentText, Toast.LENGTH_SHORT).show();
+        new BuscarLibro(listView,this).execute(currentText);
     }
 }

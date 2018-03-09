@@ -6,12 +6,12 @@ package rubendiego.salle_library;
 
 public class BookData {
 
-    public static final String ID = "id";
-    public static final String TITLE = "title";
-    public static final String DESCRIPTION = "description";
-    public static final String PUBLISHER = "publisher";
-    public static final String AUTHORS = "authors";
-    public static final String IMAGE = "image";
+    public static  String ID = "id";
+    public static  String TITLE ;
+    public static  String DESCRIPTION = "description";
+    public static  String PUBLISHER = "publisher";
+    public static  String AUTHORS = "authors";
+    public static  String IMAGE = "image";
 
     public BookData(String id) {
     }
