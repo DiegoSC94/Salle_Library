@@ -8,5 +8,7 @@
     <string name="username">Username</string>
     <string name="instruccion">Introduce el título de un libro</string>
     <string name="titulo_del_libro">Título del libro</string>
+    <string name="autor">Autor</string>
     <string name="buscar">Buscar</string>
+    <string name="descripcion">descripción</string>
 </resources>

@@ -6,4 +6,6 @@
     <dimen name="marginUserPass">60dp</dimen>
     <dimen name="margin40">40dp</dimen>
     <dimen name="margin20">20dp</dimen>
+    <dimen name="margin10">10dp</dimen>
+    <dimen name="sizeTitle">30sp</dimen>
 </resources>
