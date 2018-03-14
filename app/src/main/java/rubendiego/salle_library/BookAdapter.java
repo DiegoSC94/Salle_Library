@@ -27,6 +27,12 @@ public class BookAdapter extends BaseAdapter{
         this.context = context;
     }
 
+    private static class ViewHolder {
+
+        public TextView titulo;
+        public TextView autor;
+        public ImageView imagen;
+    }
 
     @Override
     public int getCount() {
@@ -45,16 +51,24 @@ public class BookAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        if (view == null){
+        ViewHolder viewHolder;
+        if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.adapter_book, viewGroup, false);
+
+            viewHolder = new ViewHolder();
+
+            viewHolder.titulo = view.findViewById(R.id.titleBook);
+            viewHolder.autor = view.findViewById(R.id.authorBook);
+            viewHolder.imagen = view.findViewById(R.id.imageBook);
+
+            Book book = (Book) biblioteca.get(position);
+
+            viewHolder.titulo.setText(book.getTitulo());
+            viewHolder.autor.setText(book.getAutor());
+            view.setTag(viewHolder);
+            Picasso.get().load(book.getImagen()).into(viewHolder.imagen);
+
         }
-        Book book = (Book) biblioteca.get(position);
-        TextView titulo = (TextView) view.findViewById(R.id.titleBook);
-        titulo.setText(book.getTitulo());
-        TextView autor = (TextView) view.findViewById(R.id.authorBook);
-        autor.setText(book.getAutor());
-        ImageView imagen = (ImageView) view.findViewById(R.id.imageBook);
-        Picasso.get().load(BookData.IMAGE).into((ImageView) imagen);
         return view;
     }
 }
