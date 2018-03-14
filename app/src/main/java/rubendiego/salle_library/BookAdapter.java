@@ -8,16 +8,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by Diego on 10/03/2018.
  */
 
 public class BookAdapter extends BaseAdapter{
 
-    public Book[] biblioteca;
+    public ArrayList biblioteca;
     public Context context;
 
-    public BookAdapter(Book[] biblioteca, Context context) {
+    public BookAdapter(ArrayList biblioteca, Context context) {
         this.biblioteca = biblioteca;
         this.context = context;
     }
@@ -25,12 +30,12 @@ public class BookAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return biblioteca.length;
+        return biblioteca.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return biblioteca[position];
+    public ArrayList getItem(int position) {
+        return (ArrayList) biblioteca.get(position);
     }
 
     @Override
@@ -43,13 +48,13 @@ public class BookAdapter extends BaseAdapter{
         if (view == null){
             view = LayoutInflater.from(context).inflate(R.layout.adapter_book, viewGroup, false);
         }
-        Book book = biblioteca[position];
+        Book book = (Book) biblioteca.get(position);
         TextView titulo = (TextView) view.findViewById(R.id.titleBook);
         titulo.setText(book.getTitulo());
         TextView autor = (TextView) view.findViewById(R.id.authorBook);
         autor.setText(book.getAutor());
         ImageView imagen = (ImageView) view.findViewById(R.id.imageBook);
-        imagen.setImageResource(book.getImagen());
+        Picasso.get().load(BookData.IMAGE).into((ImageView) imagen);
         return view;
     }
 }

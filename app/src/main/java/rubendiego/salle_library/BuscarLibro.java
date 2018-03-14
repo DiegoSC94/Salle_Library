@@ -9,6 +9,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import rubendiego.customsearch.CustomSearchView;
@@ -19,8 +20,8 @@ import rubendiego.customsearch.CustomSearchView;
 public class BuscarLibro extends AsyncTask<String, Void, String> {
     private CustomSearchView customSearchView;
     private ListView listView;
-    private ArrayAdapter arrayAdapter;
-    private ArrayList arrayList= new ArrayList();
+    private BookAdapter arrayAdapter;
+    private ArrayList bookList= new ArrayList();
     private Activity activity;
 
 
@@ -52,13 +53,15 @@ public class BuscarLibro extends AsyncTask<String, Void, String> {
                 try {
                     BookData.TITLE = infoLibro.getString("title");
                     BookData.AUTHORS = infoLibro.getString("authors");
+                    BookData.IMAGE=infoLibro.getString("thumbnail");
+
 
                 } catch (Exception ex) {
                     ex.printStackTrace();//cojemos la possible excepcion
                 }
                 if (BookData.TITLE != null && BookData.AUTHORS != null) {
-                    arrayAdapter = new ArrayAdapter<String>(activity, android.R.layout.simple_list_item_1, arrayList);
-                    arrayList.add(BookData.TITLE);
+                    arrayAdapter = new BookAdapter(bookList,activity);
+                    bookList.add(new Book(BookData.TITLE,BookData.DESCRIPTION,BookData.AUTHORS,BookData.IMAGE));
                     listView.setAdapter(arrayAdapter);
 
                 }

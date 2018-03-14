@@ -9,14 +9,13 @@ import android.os.Parcelable;
 
 public class Book implements Parcelable {
 
-    public String id;
     public String titulo ;
     public String description;
     public String autor;
-    public int imagen;
+    public String imagen;
 
-    public Book(String id, String titulo, String description, String autor, int imagen) {
-        this.id = id;
+    public Book(String titulo, String description, String autor, String imagen) {
+
         this.titulo = titulo;
         this.description = description;
         this.autor = autor;
@@ -24,11 +23,10 @@ public class Book implements Parcelable {
     }
 
     protected Book(Parcel in) {
-        id = in.readString();
         titulo = in.readString();
         description = in.readString();
         autor = in.readString();
-        imagen = in.readInt();
+        imagen = in.readString();
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
@@ -42,14 +40,6 @@ public class Book implements Parcelable {
             return new Book[size];
         }
     };
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTitulo() {
         return titulo;
@@ -75,11 +65,11 @@ public class Book implements Parcelable {
         this.autor = autor;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
@@ -93,6 +83,6 @@ public class Book implements Parcelable {
         parcel.writeString(titulo);
         parcel.writeString(autor);
         parcel.writeString(description);
-        parcel.writeInt(imagen);
+        parcel.writeString(imagen);
     }
 }

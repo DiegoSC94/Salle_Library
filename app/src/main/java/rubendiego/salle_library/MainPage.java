@@ -48,19 +48,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstranceState) {
-
-        View view = inflater.inflate(R.layout.activity_main_page, container, false);
-
-        ListView listView = view.findViewById(R.id.listView);
-        BookAdapter adapter = new BookAdapter(libros, getActivity());
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
-
-        return view;
-    }
-
     public boolean onCreateOptionsMenu(Menu menu) {
 
         super.onCreateOptionsMenu(menu);
