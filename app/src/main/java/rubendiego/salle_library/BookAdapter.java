@@ -49,7 +49,7 @@ public class BookAdapter extends BaseAdapter{
         TextView autor = (TextView) view.findViewById(R.id.authorBook);
         autor.setText(book.getAutor());
         ImageView imagen = (ImageView) view.findViewById(R.id.imageBook);
-        imagen.set(book.getImagen());
+        imagen.setImageResource(book.getImagen());
         return view;
     }
 }
