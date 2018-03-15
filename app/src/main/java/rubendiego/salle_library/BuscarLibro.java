@@ -21,7 +21,7 @@ public class BuscarLibro extends AsyncTask<String, Void, String> {
     private CustomSearchView customSearchView;
     private ListView listView;
     private BookAdapter arrayAdapter;
-    private ArrayList bookList= new ArrayList();
+    private Book[] bookList= new Book[];
     private Activity activity;
 
 
@@ -63,7 +63,7 @@ public class BuscarLibro extends AsyncTask<String, Void, String> {
                 }
                 if (BookData.TITLE != null && BookData.AUTHORS != null) {
                     arrayAdapter = new BookAdapter(bookList,activity);
-                    bookList.add(new Book(BookData.TITLE,BookData.DESCRIPTION,BookData.AUTHORS,BookData.IMAGE));
+                    bookList[i]=new Book(BookData.TITLE,BookData.DESCRIPTION,BookData.AUTHORS,BookData.IMAGE);
                     listView.setAdapter(arrayAdapter);
 
                 }

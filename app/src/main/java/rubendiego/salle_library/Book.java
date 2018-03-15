@@ -3,11 +3,13 @@ package rubendiego.salle_library;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by Diego on 10/03/2018.
  */
 
-public class Book implements Parcelable {
+public class Book extends ArrayList implements Parcelable {
 
     public String titulo ;
     public String description;
@@ -20,6 +22,13 @@ public class Book implements Parcelable {
         this.description = description;
         this.autor = autor;
         this.imagen = imagen;
+    }
+    public Book() {
+
+        this.titulo = "";
+        this.description = "";
+        this.autor = "";
+        this.imagen = "";
     }
 
     protected Book(Parcel in) {

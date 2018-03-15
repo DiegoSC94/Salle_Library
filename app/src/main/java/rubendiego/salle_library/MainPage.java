@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import rubendiego.customsearch.CustomSearchView;
 
 
@@ -43,9 +45,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        CustomSearchView hola=new CustomSearchView(this);
-
-
+        listView.setOnItemClickListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,6 +89,8 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Book bookList = (Book) listView.getItemAtPosition(position);
 
+        Toast.makeText(getApplication(), (CharSequence) bookList.titulo, Toast.LENGTH_LONG).show();
     }
 }

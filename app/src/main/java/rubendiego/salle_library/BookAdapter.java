@@ -19,10 +19,10 @@ import java.util.ArrayList;
 
 public class BookAdapter extends BaseAdapter{
 
-    public ArrayList biblioteca;
+    public Book[] biblioteca;
     public Context context;
 
-    public BookAdapter(ArrayList biblioteca, Context context) {
+    public BookAdapter(Book[] biblioteca, Context context) {
         this.biblioteca = biblioteca;
         this.context = context;
     }
@@ -36,12 +36,12 @@ public class BookAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return biblioteca.size();
+        return biblioteca.length;
     }
 
     @Override
-    public ArrayList getItem(int position) {
-        return (ArrayList) biblioteca.get(position);
+    public Object getItem(int position) {
+        return biblioteca[position];
     }
 
     @Override
@@ -61,7 +61,7 @@ public class BookAdapter extends BaseAdapter{
             viewHolder.autor = view.findViewById(R.id.authorBook);
             viewHolder.imagen = view.findViewById(R.id.imageBook);
 
-            Book book = (Book) biblioteca.get(position);
+            Book book = (Book) biblioteca[position];
 
             viewHolder.titulo.setText(book.getTitulo());
             viewHolder.autor.setText(book.getAutor());
