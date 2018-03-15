@@ -53,7 +53,9 @@ public class BuscarLibro extends AsyncTask<String, Void, String> {
                 try {
                     BookData.TITLE = infoLibro.getString("title");
                     BookData.AUTHORS = infoLibro.getString("authors");
-                    BookData.IMAGE=infoLibro.getString("thumbnail");
+
+                    BookData.IMAGE=infoLibro.getJSONObject("imageLinks").getString("thumbnail");
+
 
 
                 } catch (Exception ex) {
