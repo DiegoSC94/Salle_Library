@@ -8,11 +8,11 @@ import android.content.Intent;
 
 public class BookData {
 
-    public static  String ID = "id";
-    public static  String TITLE ;
-    public static  String DESCRIPTION = "description";
-    public static  String PUBLISHER = "publisher";
-    public static  String AUTHORS = "authors";
+    public static String ID = "id";
+    public static String TITLE ;
+    public static String DESCRIPTION = "description";
+    public static String PUBLISHER = "publisher";
+    public static String AUTHORS = "authors";
     public static String IMAGE = "imagen";
 
     public BookData(String id) {

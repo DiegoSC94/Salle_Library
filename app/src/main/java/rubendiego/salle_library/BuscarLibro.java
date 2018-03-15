@@ -21,7 +21,7 @@ public class BuscarLibro extends AsyncTask<String, Void, String> {
     private CustomSearchView customSearchView;
     private ListView listView;
     private BookAdapter arrayAdapter;
-    private Book[] bookList= new Book[];
+    private Book[] bookList = new Book[20];
     private Activity activity;
 
 

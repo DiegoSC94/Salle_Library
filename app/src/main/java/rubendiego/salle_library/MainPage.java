@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -18,6 +19,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -92,5 +94,18 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         Book bookList = (Book) listView.getItemAtPosition(position);
 
         Toast.makeText(getApplication(), (CharSequence) bookList.titulo, Toast.LENGTH_LONG).show();
+
+        Bundle bundle = new Bundle();
+        Book libro = (Book) bookList.get(position);
+
+        TextView titulo=view.findViewById(R.id.titleBook);
+
+        bundle.putParcelable("Libro", libro);
+
+        Intent newActivity = new Intent(MainPage.this,OpenBook.class);
+        newActivity.putExtra("Libro", (Parcelable) libro);
+        startActivity(newActivity);
+
+
     }
 }
