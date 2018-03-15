@@ -31,7 +31,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
     private Button logOff;
     private ListView listView;
-    private Book[] libros;
 
 
     @Override
@@ -95,12 +94,9 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
         Toast.makeText(getApplication(), (CharSequence) bookList.titulo, Toast.LENGTH_LONG).show();
 
-        Bundle bundle = new Bundle();
-        Book libro = (Book) bookList.get(position);
+        Book libro = (Book) bookList;
 
-        TextView titulo=view.findViewById(R.id.titleBook);
-
-        bundle.putParcelable("Libro", libro);
+        //bundle.putParcelable("Libro", libro);
 
         Intent newActivity = new Intent(MainPage.this,OpenBook.class);
         newActivity.putExtra("Libro", (Parcelable) libro);

@@ -90,8 +90,8 @@ public class Book extends ArrayList implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(titulo);
-        parcel.writeString(autor);
         parcel.writeString(description);
+        parcel.writeString(autor);
         parcel.writeString(imagen);
     }
 }

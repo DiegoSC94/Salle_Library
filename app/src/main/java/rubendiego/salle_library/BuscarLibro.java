@@ -53,7 +53,7 @@ public class BuscarLibro extends AsyncTask<String, Void, String> {
                 try {
                     BookData.TITLE = infoLibro.getString("title");
                     BookData.AUTHORS = infoLibro.getString("authors");
-
+                    BookData.DESCRIPTION=infoLibro.getString("description");
                     BookData.IMAGE=infoLibro.getJSONObject("imageLinks").getString("thumbnail");
 
 
