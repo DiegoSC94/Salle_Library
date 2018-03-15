@@ -6,7 +6,7 @@
     <item
         android:id="@+id/addBar"
         android:orderInCategory="101"
-        android:title="Add Bar"
+        android:title="Add Faborito"
         android:icon="@drawable/ic_action_add"
         app:showAsAction="withText|ifRoom" />
 
