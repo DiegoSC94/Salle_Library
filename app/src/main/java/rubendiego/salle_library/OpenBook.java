@@ -34,7 +34,7 @@ public class OpenBook extends AppCompatActivity {
     public TextView titulo, autor, descripcion;
     public ImageView imageView;
     public Book Libro;
-    public Book[] librosFavoritos = new Book[10];
+    public ArrayList<Book> librosFavoritos=new ArrayList<Book>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,54 +77,40 @@ public class OpenBook extends AppCompatActivity {
                 SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
 
                 if (favoritos.getString("listObjetos", "no hay nada") == "no hay nada") {
-
-                    //String jsonObjetos = new Gson().toJson(Libro);
-                    //Crea preferencia
-
-                    StringBuilder stringBuilder = new StringBuilder();
-
-                        stringBuilder.append(titulo);
-                        stringBuilder.append(",");
-                        stringBuilder.append(autor);
-                        stringBuilder.append(",");
-                        stringBuilder.append(descripcion);
-                        stringBuilder.append(",");
-                        stringBuilder.append(imageView);
-                        stringBuilder.append(",");
+                    librosFavoritos.add(new Book(titulo.toString(), descripcion.toString(), autor.toString(), Libro.getImagen()));
+                    String listObjetos = new Gson().toJson(librosFavoritos);
 
 
-                    //Guarda lista de objetos, en formato .json
                     SharedPreferences.Editor editor = favoritos.edit();
-                    editor.putString("listObjetos", stringBuilder.toString());
+                    editor.putString("listObjetos", listObjetos);
                     editor.apply();
                 } else {
-                    String json = new Gson().toJson(favoritos.getString("listObjetos", "no hay nada"));
+                    String ObjetoGuardado = favoritos.getString("listObjetos", "no hay nada");
                     //Se crea un JSONArray y se guarda el string json
-                    JSONArray jsonArray = null;
-                    try {
-                        jsonArray = new JSONArray(json);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
 
-                    Type listType = (Type) new TypeToken<ArrayList<Book>>() {
-                    }.getType();
-                    List<Book> listObjetos = new Gson().fromJson(jsonArray, listType);
-                    for (int i = 0; i <= listObjetos.size(); i++) {
-                        librosFavoritos[i] = new Gson().fromJson(jsonArray);
+                    ArrayList<Book> listaDeLibros;
+                    listaDeLibros = new Gson().fromJson(ObjetoGuardado, (java.lang.reflect.Type) librosFavoritos);
 
-                        if (librosFavoritos.length != 10) {
+
+                    if (librosFavoritos.size() < 10) {
+                            listaDeLibros.add(new Book(titulo.toString(), descripcion.toString(), autor.toString(), Libro.getImagen()));
                             Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_LONG).show();
+                            for (int i=0;i<listaDeLibros.size();i++){
+                                Toast.makeText(this, listaDeLibros.get(i).titulo.toString(), Toast.LENGTH_LONG).show();
+
+                            }
+
 
                         } else {
                             Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
                         }
                     }
-                }
+
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 }
 
