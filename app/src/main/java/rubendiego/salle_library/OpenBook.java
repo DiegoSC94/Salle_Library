@@ -77,12 +77,25 @@ public class OpenBook extends AppCompatActivity {
                 SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
 
                 if (favoritos.getString("listObjetos", "no hay nada") == "no hay nada") {
-                    String jsonObjetos = new Gson().toJson(Libro);
+
+                    //String jsonObjetos = new Gson().toJson(Libro);
                     //Crea preferencia
+
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                        stringBuilder.append(titulo);
+                        stringBuilder.append(",");
+                        stringBuilder.append(autor);
+                        stringBuilder.append(",");
+                        stringBuilder.append(descripcion);
+                        stringBuilder.append(",");
+                        stringBuilder.append(imageView);
+                        stringBuilder.append(",");
+
 
                     //Guarda lista de objetos, en formato .json
                     SharedPreferences.Editor editor = favoritos.edit();
-                    editor.putString("listObjetos", jsonObjetos);
+                    editor.putString("listObjetos", stringBuilder.toString());
                     editor.apply();
                 } else {
                     String json = new Gson().toJson(favoritos.getString("listObjetos", "no hay nada"));
@@ -107,7 +120,6 @@ public class OpenBook extends AppCompatActivity {
                             Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
                         }
                     }
-
                 }
                 break;
             default:
