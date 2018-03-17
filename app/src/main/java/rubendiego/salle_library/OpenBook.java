@@ -20,6 +20,8 @@ import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class OpenBook extends AppCompatActivity {
     public TextView titulo, autor, descripcion;
     public ImageView imageView;
     public Book Libro;
-    public Book[] librosFavoritos=new Book[10];
+    public Book[] librosFavoritos = new Book[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,40 +72,47 @@ public class OpenBook extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.addBar:
 
+                SharedPreferences usuario = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
+                String userFavorito = usuario.getString("username", "No hay info");
+                SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
 
+                if (favoritos.getString("listObjetos", "no hay nada") == "no hay nada") {
+                    String jsonObjetos = new Gson().toJson(Libro);
+                    //Crea preferencia
 
-                    SharedPreferences usuario = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
-                    String userFavorito=usuario.getString("username", "ho hay info");
-                    SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
-
-                    if (favoritos.getString("listObjetos","no hay nada")=="no hay nada") {
-                        String jsonObjetos = new Gson().toJson(Libro);
-                        //Crea preferencia
-
-                        //Guarda lista de objetos, en formato .json
-                        SharedPreferences.Editor editor = favoritos.edit();
-                        editor.putString("listObjetos", jsonObjetos);
-                        editor.apply();
-                    }else{
-                        String json = new Gson().toJson(favoritos.getString("listObjetos","no hay nada"));
-                        JSONArray jsonArray = new JSONArray(json);
-
-                        Type listType = (Type) new TypeToken<ArrayList<Book>>(){}.getType();
-                        List<Book> listObjetos = new Gson().fromJson(jsonArray, listType);
-                        for(int i=0;i<=listObjetos.size();i++) {
-                            librosFavoritos[i] = new Gson().fromJson(jsonArray);
-                        }
-                            if(librosFavoritos.length!=10){
-
+                    //Guarda lista de objetos, en formato .json
+                    SharedPreferences.Editor editor = favoritos.edit();
+                    editor.putString("listObjetos", jsonObjetos);
+                    editor.apply();
+                } else {
+                    String json = new Gson().toJson(favoritos.getString("listObjetos", "no hay nada"));
+                    //Se crea un JSONArray y se guarda el string json
+                    JSONArray jsonArray = null;
+                    try {
+                        jsonArray = new JSONArray(json);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_LONG).show();
-            }else{
-                    Toast.makeText(this, "tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
+
+                    Type listType = (Type) new TypeToken<ArrayList<Book>>() {
+                    }.getType();
+                    List<Book> listObjetos = new Gson().fromJson(jsonArray, listType);
+                    for (int i = 0; i <= listObjetos.size(); i++) {
+                        librosFavoritos[i] = new Gson().fromJson(jsonArray);
+
+                        if (librosFavoritos.length != 10) {
+                            Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
                 }
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }
+

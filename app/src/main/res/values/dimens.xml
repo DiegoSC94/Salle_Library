@@ -8,4 +8,5 @@
     <dimen name="margin20">20dp</dimen>
     <dimen name="margin10">10dp</dimen>
     <dimen name="sizeTitle">30sp</dimen>
+    <dimen name="titulo_favoritos">40sp</dimen>
 </resources>
