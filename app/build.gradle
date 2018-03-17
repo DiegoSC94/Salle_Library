@@ -28,4 +28,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile project(path: ':customsearch')
     compile 'com.squareup.picasso:picasso:2.71828'
+    compile 'com.google.code.gson:gson:2.2.4'
 }
