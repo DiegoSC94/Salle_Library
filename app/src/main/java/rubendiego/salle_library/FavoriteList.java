@@ -43,9 +43,9 @@ listView=findViewById(R.id.lista_favoritos);
         librosFavoritos = new Gson().fromJson(ObjetoGuardado, type);
         for (int i=0;i<librosFavoritos.size();i++) {
             arrayAdapter = new BookAdapter(bookList, this);
-            bookList[i] = (Book) arrayAdapter.getItem(i);
+            bookList[i] = (Book) librosFavoritos.get(i);
             listView.setAdapter(arrayAdapter);
-            Toast.makeText(this, librosFavoritos.get(i).toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, bookList[i].titulo, Toast.LENGTH_LONG).show();
         }
 
         /*
