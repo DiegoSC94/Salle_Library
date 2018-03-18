@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.renderscript.Type;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class OpenBook extends AppCompatActivity {
                 SharedPreferences usuario = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
                 String userFavorito = usuario.getString("username", "No hay info");
                 SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
-
+                SharedPreferences.Editor editor = favoritos.edit();
 /*
                 SharedPreferences.Editor editor = favoritos.edit();
                 Gson gson = new Gson();
@@ -91,24 +92,33 @@ public class OpenBook extends AppCompatActivity {
                     String listObjetos = new Gson().toJson(librosFavoritos);
 
 
-                    SharedPreferences.Editor editor = favoritos.edit();
+
                     editor.putString("listObjetos", listObjetos);
                     editor.apply();
                 } else {
                     String ObjetoGuardado = favoritos.getString("listObjetos", "no hay nada");
                     //Se crea un JSONArray y se guarda el string json
 
+                    Type type = (Type) new TypeToken<ArrayList<Book>>(){}.getType();
                     ArrayList<Book> listaDeLibros;
-                    listaDeLibros = new Gson().fromJson(ObjetoGuardado, (java.lang.reflect.Type) librosFavoritos);
+                    listaDeLibros = new Gson().fromJson(ObjetoGuardado, type);
+                    for (int i=0;i<listaDeLibros.size();i++){
+                        Log.d("info1", String.valueOf(listaDeLibros.get(i).titulo));
+                    }
+
 
 
                     if (librosFavoritos.size() < 10) {
-                            listaDeLibros.add(new Book(titulo.toString(), descripcion.toString(), autor.toString(), Libro.getImagen()));
+                            listaDeLibros.add(Libro);
                             Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_LONG).show();
-                            for (int i=0;i<listaDeLibros.size();i++){
-                                Toast.makeText(this, listaDeLibros.get(i).titulo.toString(), Toast.LENGTH_LONG).show();
+                            String listObjetos = new Gson().toJson(listaDeLibros);
+                            editor.putString("listObjetos",listObjetos);
 
+                            for (int i=0;i<listaDeLibros.size();i++){
+                                Toast.makeText(this, listaDeLibros.get(i).titulo, Toast.LENGTH_LONG).show();
+                                Log.d("info", String.valueOf(listaDeLibros.get(i).titulo));
                             }
+
 
                         } else {
                             Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
