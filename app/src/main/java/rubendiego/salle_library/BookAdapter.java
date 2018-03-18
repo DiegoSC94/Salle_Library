@@ -52,23 +52,28 @@ public class BookAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.adapter_book, viewGroup, false);
+        try{
+            if (view == null) {
+                view = LayoutInflater.from(context).inflate(R.layout.adapter_book, viewGroup, false);
 
-            viewHolder = new ViewHolder();
+                viewHolder = new ViewHolder();
 
-            viewHolder.titulo = view.findViewById(R.id.titleBook);
-            viewHolder.autor = view.findViewById(R.id.authorBook);
-            viewHolder.imagen = view.findViewById(R.id.imageBook);
+                viewHolder.titulo = view.findViewById(R.id.titleBook);
+                viewHolder.autor = view.findViewById(R.id.authorBook);
+                viewHolder.imagen = view.findViewById(R.id.imageBook);
 
-            Book book = (Book) biblioteca[position];
+                Book book = (Book) biblioteca[position];
 
-            viewHolder.titulo.setText(book.getTitulo());
-            viewHolder.autor.setText(book.getAutor());
-            view.setTag(viewHolder);
-            Picasso.get().load(book.getImagen()).into(viewHolder.imagen);
+                viewHolder.titulo.setText(book.getTitulo());
+                viewHolder.autor.setText(book.getAutor());
+                view.setTag(viewHolder);
+                Picasso.get().load(book.getImagen()).into(viewHolder.imagen);
+
+            }
+        }catch (Exception e ){
 
         }
+
         return view;
     }
 }
