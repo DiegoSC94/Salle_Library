@@ -119,10 +119,12 @@ public class OpenBook extends AppCompatActivity {
                                 Log.d("info", String.valueOf(listaDeLibros.get(i).titulo));
                             }
 
+                            editor.commit();
 
                         } else {
                             Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
                         }
+
                     }
 
 
