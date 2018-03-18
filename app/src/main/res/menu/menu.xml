@@ -4,12 +4,17 @@
     android:id="@+id/main_menu">
 
     <item
+        android:id="@+id/listFav"
+        android:orderInCategory="101"
+        android:title="List Favoritos"
+        android:icon="@drawable/ic_favorite"
+        app:showAsAction="withText|ifRoom" />
+
+    <item
         android:id="@+id/logOffBar"
         android:orderInCategory="101"
         android:title="Log Off"
         android:icon="@drawable/ic_action_import"
         app:showAsAction="withText|ifRoom" />
-
-
 
 </menu>

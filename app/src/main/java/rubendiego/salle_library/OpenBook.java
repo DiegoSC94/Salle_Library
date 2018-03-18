@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +35,7 @@ public class OpenBook extends AppCompatActivity {
     public TextView titulo, autor, descripcion;
     public ImageView imageView;
     public Book Libro;
-    public ArrayList<Book> librosFavoritos=new ArrayList<Book>();
+    public ArrayList<Book> librosFavoritos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class OpenBook extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         Intent intentLibro = getIntent();
+        librosFavoritos = new ArrayList<Book>();
         Libro = intentLibro.getParcelableExtra("Libro");
         titulo = findViewById(R.id.titulo_Open);
         autor = findViewById(R.id.autores_Open);
@@ -76,7 +78,14 @@ public class OpenBook extends AppCompatActivity {
                 String userFavorito = usuario.getString("username", "No hay info");
                 SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
 
-                if (favoritos.getString("listObjetos", "no hay nada") == "no hay nada") {
+                SharedPreferences.Editor editor = favoritos.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(librosFavoritos);
+                editor.putString("libro", json);
+                editor.apply();
+
+
+                /*if (favoritos.getString("listObjetos", "no hay nada") == "no hay nada") {
                     librosFavoritos.add(new Book(titulo.toString(), descripcion.toString(), autor.toString(), Libro.getImagen()));
                     String listObjetos = new Gson().toJson(librosFavoritos);
 
@@ -100,14 +109,23 @@ public class OpenBook extends AppCompatActivity {
 
                             }
 
-
                         } else {
                             Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
                         }
                     }
+                    */
 
                 break;
+
             default:
+
+                SharedPreferences usuario2 = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
+                Gson gson2 = new Gson();
+                String json2 = usuario2.getString("libro", null);
+
+                Type type = (Type) new TypeToken<ArrayList<Book>>(){}.getType();
+                Libro = gson2.fromJson(json2, (java.lang.reflect.Type) type);
+
                 return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
