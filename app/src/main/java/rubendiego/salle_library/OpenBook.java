@@ -78,14 +78,15 @@ public class OpenBook extends AppCompatActivity {
                 String userFavorito = usuario.getString("username", "No hay info");
                 SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
 
+/*
                 SharedPreferences.Editor editor = favoritos.edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(librosFavoritos);
                 editor.putString("libro", json);
                 editor.apply();
 
-
-                /*if (favoritos.getString("listObjetos", "no hay nada") == "no hay nada") {
+*/
+                if (favoritos.getString("listObjetos", "no hay nada") == "no hay nada") {
                     librosFavoritos.add(new Book(titulo.toString(), descripcion.toString(), autor.toString(), Libro.getImagen()));
                     String listObjetos = new Gson().toJson(librosFavoritos);
 
@@ -113,18 +114,11 @@ public class OpenBook extends AppCompatActivity {
                             Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
                         }
                     }
-                    */
+
 
                 break;
 
             default:
-
-                SharedPreferences usuario2 = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
-                Gson gson2 = new Gson();
-                String json2 = usuario2.getString("libro", null);
-
-                Type type = (Type) new TypeToken<ArrayList<Book>>(){}.getType();
-                Libro = gson2.fromJson(json2, (java.lang.reflect.Type) type);
 
                 return super.onOptionsItemSelected(item);
         }

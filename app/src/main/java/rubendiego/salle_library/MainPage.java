@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.renderscript.Type;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -22,6 +23,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 
 import rubendiego.customsearch.CustomSearchView;
@@ -31,7 +35,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
     private Button logOff;
     private ListView listView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
             case R.id.logOffBar:
                 SharedPreferences datos = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = datos.edit();
@@ -68,6 +72,11 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 editor.commit();
                 Intent intent = new Intent(this, LoginRegis.class);
                 startActivity(intent);
+                break;
+
+            case R.id.listFav:
+                Intent intent2 = new Intent(this, FavoriteList.class);
+                startActivity(intent2);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
