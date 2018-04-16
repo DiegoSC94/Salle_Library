@@ -11,7 +11,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by ruben on 07/03/2018.
+ *
+ * <p>Esta clase se conecta con la base de datos para recuperar los libros que se buscan</p>
+ *
+ * @author Ruben y Diego on 07/03/2018.
  */
 
 public class ConexionApi {

@@ -15,15 +15,19 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 
 /**
- * Created by Diego on 17/03/2018.
+ *
+ * <p>Esta clase permite almacenar tus libros favoritos en una lista</p>
+ *
+ * @author Diego y Ruben on 17/03/2018.
+ *
  */
 
 public class FavoriteList extends AppCompatActivity{
     private BookAdapter arrayAdapter;
-    public Book Libro;
+    private Book Libro;
     private Book[] bookList=new Book[10];
-    public ListView listView;
-    public ArrayList<Book> librosFavoritos;
+    private ListView listView;
+    private ArrayList<Book> librosFavoritos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

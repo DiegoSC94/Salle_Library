@@ -14,13 +14,16 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Created by Diego on 10/03/2018.
+ *
+ * <p>Esta clase crea un adaptador para mostrar en una lista los libros</p>
+ *
+ * @author Diego y Ruben on 10/03/2018.
  */
 
 public class BookAdapter extends BaseAdapter{
 
-    public Book[] biblioteca;
-    public Context context;
+    private Book[] biblioteca;
+    private Context context;
 
     public BookAdapter(Book[] biblioteca, Context context) {
         this.biblioteca = biblioteca;

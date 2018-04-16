@@ -6,15 +6,18 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 /**
- * Created by Diego on 10/03/2018.
+ * <p>Esta clase se utiliza para almacenar las caracteristicas de los libros</p>
+ *
+ * @author Diego y Ruben on 10/03/2018.
+ *
  */
 
 public class Book extends ArrayList implements Parcelable {
 
-    public String titulo ;
-    public String description;
-    public String autor;
-    public String imagen;
+    private String titulo ;
+    private String description;
+    private String autor;
+    private String imagen;
 
     public Book(String titulo, String description, String autor, String imagen) {
 
