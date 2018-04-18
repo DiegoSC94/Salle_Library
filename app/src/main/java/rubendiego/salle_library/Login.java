@@ -53,6 +53,14 @@ public class Login extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    /**
+     *
+     * @param activity es la actividad que le pasas para que puedas usar la base de datos
+     *
+     *<p>Aqui dentro se va a comprovar si el usuario tiene una sesion activa entrando en la base de datos y mirando mediante un boolean si la sesion esta iniciada o ya ha sido cerrada</p>
+     *
+     * @return retorna true (si la sesion esta iniciada) o false (si la sesion esta cerrada)
+     */
     private boolean obtenerValoresSesion(Activity activity) {
         SharedPreferences sesion = getActivity().getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
         return sesion.getBoolean("sesion", false); //valor default false

@@ -11,7 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- *
  * <p>Esta clase se conecta con la base de datos para recuperar los libros que se buscan</p>
  *
  * @author Ruben y Diego on 07/03/2018.
@@ -24,7 +23,12 @@ public class ConexionApi {
     private static final String MAX_RESULTS = "maxResults"; //limite de resultados
     private static final String PRINT_TYPE = "printType"; //para para filtrar
 
-
+    /**
+     * @param queryString es el parametro que se utiliza para buscar libros,es decir , es la palabro la frase que poses en el buscador
+     *                    <p>
+     *                    <p>Este metodo se conecta a la api de google y busca mediante el bufferReader si encuentra algo, si encuentra algo lo guardara para luego convertirl a Json</p>
+     * @return retorna los resultados que encuetra buscado en la api de google
+     */
     static String infoBook(String queryString) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -67,10 +71,10 @@ public class ConexionApi {
             if (urlConnection != null) {
                 urlConnection.disconnect();
             }
-            if (reader!=null){
-                try{
+            if (reader != null) {
+                try {
                     reader.close();
-                }catch (IOException exIO){
+                } catch (IOException exIO) {
                     exIO.printStackTrace();//printamos el possible error de io
                 }
             }

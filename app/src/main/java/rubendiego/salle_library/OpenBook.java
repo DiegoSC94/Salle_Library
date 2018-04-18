@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,16 +19,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by Diego on 15/03/2018.
+ *
+ * <p>Esta clase te permite guardar en favoritos tu libro y tambien verlo abierto,es dir ,  ver sus caracteristicas mas ampliamente  </p>
+ *
+ * @author Ruben y Diego on 07/03/2018.
  */
 
 public class OpenBook extends AppCompatActivity {
@@ -79,18 +76,9 @@ public class OpenBook extends AppCompatActivity {
                 String userFavorito = usuario.getString("username", "No hay info");
                 SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = favoritos.edit();
-/*
-                SharedPreferences.Editor editor = favoritos.edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(librosFavoritos);
-                editor.putString("libro", json);
-                editor.apply();
-
-*/
                 if (favoritos.getString("listObjetos", "no hay nada") == "no hay nada") {
                     librosFavoritos.add(new Book(titulo.toString(), descripcion.toString(), autor.toString(), Libro.getImagen()));
                     String listObjetos = new Gson().toJson(librosFavoritos);
-
 
 
                     editor.putString("listObjetos", listObjetos);
@@ -99,33 +87,33 @@ public class OpenBook extends AppCompatActivity {
                     String ObjetoGuardado = favoritos.getString("listObjetos", "no hay nada");
                     //Se crea un JSONArray y se guarda el string json
 
-                    Type type = (Type) new TypeToken<ArrayList<Book>>(){}.getType();
+                    Type type = (Type) new TypeToken<ArrayList<Book>>() {
+                    }.getType();
                     ArrayList<Book> listaDeLibros;
                     listaDeLibros = new Gson().fromJson(ObjetoGuardado, type);
-                    for (int i=0;i<listaDeLibros.size();i++){
+                    for (int i = 0; i < listaDeLibros.size(); i++) {
                         Log.d("info1", String.valueOf(listaDeLibros.get(i).titulo));
                     }
 
 
-
                     if (librosFavoritos.size() < 10) {
-                            listaDeLibros.add(Libro);
-                            Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_LONG).show();
-                            String listObjetos = new Gson().toJson(listaDeLibros);
-                            editor.putString("listObjetos",listObjetos);
+                        listaDeLibros.add(Libro);
+                        Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_LONG).show();
+                        String listObjetos = new Gson().toJson(listaDeLibros);
+                        editor.putString("listObjetos", listObjetos);
 
-                            for (int i=0;i<listaDeLibros.size();i++){
-                                Toast.makeText(this, listaDeLibros.get(i).titulo, Toast.LENGTH_LONG).show();
-                                Log.d("info", String.valueOf(listaDeLibros.get(i).titulo));
-                            }
-
-                            editor.commit();
-
-                        } else {
-                            Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
+                        for (int i = 0; i < listaDeLibros.size(); i++) {
+                            Toast.makeText(this, listaDeLibros.get(i).titulo, Toast.LENGTH_LONG).show();
+                            Log.d("info", String.valueOf(listaDeLibros.get(i).titulo));
                         }
 
+                        editor.commit();
+
+                    } else {
+                        Toast.makeText(this, "Tienes el maximo de favoritos", Toast.LENGTH_LONG).show();
                     }
+
+                }
 
 
                 break;

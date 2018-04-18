@@ -9,12 +9,22 @@ import java.util.ArrayList;
  * <p>Esta clase se utiliza para almacenar las caracteristicas de los libros</p>
  *
  * @author Diego y Ruben on 10/03/2018.
- *
  */
 
 public class Book extends ArrayList implements Parcelable {
 
-    public String titulo ;
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        @Override
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
+    public String titulo;
     private String description;
     private String autor;
     private String imagen;
@@ -26,6 +36,7 @@ public class Book extends ArrayList implements Parcelable {
         this.autor = autor;
         this.imagen = imagen;
     }
+
     public Book() {
 
         this.titulo = "";
@@ -40,18 +51,6 @@ public class Book extends ArrayList implements Parcelable {
         autor = in.readString();
         imagen = in.readString();
     }
-
-    public static final Creator<Book> CREATOR = new Creator<Book>() {
-        @Override
-        public Book createFromParcel(Parcel in) {
-            return new Book(in);
-        }
-
-        @Override
-        public Book[] newArray(int size) {
-            return new Book[size];
-        }
-    };
 
     public String getTitulo() {
         return titulo;

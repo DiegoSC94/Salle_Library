@@ -16,6 +16,11 @@ import android.widget.Toast;
 
 
 /**
+ *
+ * <p>Esta clase te permite registrarte mediante una pantalla de registro</p>
+ *
+ * @author Ruben y Diego on 07/03/2018.
+ *
  * A simple {@link Fragment} subclass.
  */
 public class Register extends Fragment implements View.OnClickListener {

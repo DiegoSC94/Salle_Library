@@ -2,20 +2,15 @@ package rubendiego.salle_library;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import rubendiego.customsearch.CustomSearchView;
 
 /**
- *
  * <p>Esta clase permite, mediante un buscador, buscar libros por el titulo</p>
  *
  * @author Ruben y Diego on 07/03/2018.
@@ -56,24 +51,23 @@ public class BuscarLibro extends AsyncTask<String, Void, String> {
                 try {
                     BookData.TITLE = infoLibro.getString("title");
                     BookData.AUTHORS = infoLibro.getString("authors");
-                    BookData.DESCRIPTION=infoLibro.getString("description");
-                    BookData.IMAGE=infoLibro.getJSONObject("imageLinks").getString("thumbnail");
-
+                    BookData.DESCRIPTION = infoLibro.getString("description");
+                    BookData.IMAGE = infoLibro.getJSONObject("imageLinks").getString("thumbnail");
 
 
                 } catch (Exception ex) {
                     ex.printStackTrace();//cojemos la possible excepcion
                 }
                 if (BookData.TITLE != null && BookData.AUTHORS != null) {
-                    arrayAdapter = new BookAdapter(bookList,activity);
-                    bookList[i]=new Book(BookData.TITLE,BookData.DESCRIPTION,BookData.AUTHORS,BookData.IMAGE);
+                    arrayAdapter = new BookAdapter(bookList, activity);
+                    bookList[i] = new Book(BookData.TITLE, BookData.DESCRIPTION, BookData.AUTHORS, BookData.IMAGE);
                     listView.setAdapter(arrayAdapter);
 
                 }
 
             }
-        }catch (Exception ex){
-            Toast.makeText(activity,"No hay liros con el titulo: "+s,Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(activity, "No hay liros con el titulo: " + s, Toast.LENGTH_LONG).show();
         }
     }
 }

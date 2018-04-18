@@ -10,17 +10,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 /**
- *
  * <p>Esta clase crea un adaptador para mostrar en una lista los libros</p>
  *
  * @author Diego y Ruben on 10/03/2018.
  */
 
-public class BookAdapter extends BaseAdapter{
+public class BookAdapter extends BaseAdapter {
 
     private Book[] biblioteca;
     private Context context;
@@ -28,13 +24,6 @@ public class BookAdapter extends BaseAdapter{
     public BookAdapter(Book[] biblioteca, Context context) {
         this.biblioteca = biblioteca;
         this.context = context;
-    }
-
-    private static class ViewHolder {
-
-        public TextView titulo;
-        public TextView autor;
-        public ImageView imagen;
     }
 
     @Override
@@ -55,7 +44,7 @@ public class BookAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
-        try{
+        try {
             if (view == null) {
                 view = LayoutInflater.from(context).inflate(R.layout.adapter_book, viewGroup, false);
 
@@ -73,10 +62,17 @@ public class BookAdapter extends BaseAdapter{
                 Picasso.get().load(book.getImagen()).into(viewHolder.imagen);
 
             }
-        }catch (Exception e ){
+        } catch (Exception e) {
 
         }
 
         return view;
+    }
+
+    private static class ViewHolder {
+
+        public TextView titulo;
+        public TextView autor;
+        public ImageView imagen;
     }
 }

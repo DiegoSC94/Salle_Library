@@ -7,7 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
+/**
+ *
+ * <p>Esta clase te permite mostrar una foto por un tiempo limitaado para hacer una introuccion a tu aplicacion</p>
+ *
+ * @author Ruben y Diego on 07/03/2018.
+ *
+ */
 public class SplashMainActivity extends AppCompatActivity {
 
     @Override

@@ -6,6 +6,11 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
+/**
+ * <p>Esta clase se utiliza para abrir los fragments de registro e inicio</p>
+ *
+ * @author Diego y Ruben on 10/03/2018.
+ */
 public class LoginRegis extends Activity {
 
     @Override

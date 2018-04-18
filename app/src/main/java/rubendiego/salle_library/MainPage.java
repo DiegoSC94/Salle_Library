@@ -5,28 +5,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.renderscript.Type;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.ArrayList;
 
 import rubendiego.customsearch.CustomSearchView;
 
@@ -52,6 +40,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         listView.setOnItemClickListener(this);
     }
 
+
     public boolean onCreateOptionsMenu(Menu menu) {
 
         super.onCreateOptionsMenu(menu);
@@ -60,6 +49,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
+
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -94,7 +84,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onSearchButtonClicked(CustomSearchView source, String currentText) {
         Toast.makeText(this, "Searching..." + currentText, Toast.LENGTH_SHORT).show();
-        new BuscarLibro(listView,this).execute(currentText);
+        new BuscarLibro(listView, this).execute(currentText);
     }
 
     @Override
@@ -107,7 +97,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
 
         //bundle.putParcelable("Libro", libro);
 
-        Intent newActivity = new Intent(MainPage.this,OpenBook.class);
+        Intent newActivity = new Intent(MainPage.this, OpenBook.class);
         newActivity.putExtra("Libro", (Parcelable) libro);
         startActivity(newActivity);
 
