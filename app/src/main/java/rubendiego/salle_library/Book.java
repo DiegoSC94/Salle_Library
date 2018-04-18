@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Book extends ArrayList implements Parcelable {
 
-    private String titulo ;
+    public String titulo ;
     private String description;
     private String autor;
     private String imagen;
