@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -34,6 +36,7 @@ public class OpenBook extends AppCompatActivity {
     public ImageView imageView;
     public Book Libro;
     public ArrayList<Book> librosFavoritos;
+    public String libroConcatenado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +55,21 @@ public class OpenBook extends AppCompatActivity {
         descripcion = findViewById(R.id.descripcion_Open);
         imageView = findViewById(R.id.imagenLibro_Open);
 
-
         titulo.setText(Libro.getTitulo());
         autor.setText(Libro.getAutor());
         descripcion.setText(Libro.getDescription());
         Picasso.get().load(Libro.getImagen()).into(imageView);
+
+        Log.d("titulo libro", String.valueOf(Libro.getTitulo()));
+        SharedPreferences sharedPreferences = getSharedPreferences("favoritos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        /*
+        SharedPreferences usuario = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
+        String userFavorito = usuario.getString("username", "No hay info");
+        SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = favoritos.edit();
+        */
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,6 +85,37 @@ public class OpenBook extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.addBar:
 
+                librosFavoritos.add(new Book(Libro.getTitulo(), Libro.getDescription(), Libro.getAutor(), Libro.getImagen()));
+
+                for (int i = 0; i < librosFavoritos.size(); i++) {
+                    Log.d("insertadoTitulo", String.valueOf(librosFavoritos.get(i).getTitulo()));
+                    Log.d("insertadoAutor", String.valueOf(librosFavoritos.get(i).getAutor()));
+                    Log.d("imagen", String.valueOf(librosFavoritos.get(i).getImagen()));
+                    Log.d("descripcion", String.valueOf(librosFavoritos.get(i).getDescription()));
+                }
+
+                SharedPreferences sharedPreferences = getSharedPreferences("favoritos", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                Log.d("listaDeLibros", String.valueOf(librosFavoritos.size()));
+                //Gson gson = new Gson();
+                //String json = gson.toJson(librosFavoritos);
+                //Log.d("contenidoJsonOpenBook", String.valueOf(json));
+                libroConcatenado = "";
+                for (int i = 0; i < librosFavoritos.size(); i++) {
+                    Book libro = librosFavoritos.get(i);
+                    libroConcatenado += libro.getTitulo() + ";" + libro.getDescription() + ";" + libro.getAutor() + ";" + libro.getImagen() + ";";
+                }
+                Log.d("libroContatenado", String.valueOf(libroConcatenado));
+                editor.putString("librosFavoritos", libroConcatenado);
+                editor.commit();
+                /*
+                for (int i = 0; i < librosFavoritos.size(); i++) {
+                    Log.d("size", String.valueOf(librosFavoritos.size()));
+                    Log.d("infoTodoElLibro", String.valueOf(librosFavoritos.get(i).getTitulo()));
+                }
+*/
+/*
                 SharedPreferences usuario = getSharedPreferences("baseDeDatos", Context.MODE_PRIVATE);
                 String userFavorito = usuario.getString("username", "No hay info");
                 SharedPreferences favoritos = getSharedPreferences(userFavorito, Context.MODE_PRIVATE);
@@ -103,7 +147,7 @@ public class OpenBook extends AppCompatActivity {
                         editor.putString("listObjetos", listObjetos);
 
                         for (int i = 0; i < listaDeLibros.size(); i++) {
-                            Toast.makeText(this, listaDeLibros.get(i).titulo, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(this, listaDeLibros.get(i).titulo, Toast.LENGTH_LONG).show();
                             Log.d("info", String.valueOf(listaDeLibros.get(i).titulo));
                         }
 
@@ -115,7 +159,7 @@ public class OpenBook extends AppCompatActivity {
 
                 }
 
-
+*/
                 break;
 
             default:
