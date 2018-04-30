@@ -85,7 +85,7 @@ public class OpenBook extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.addBar:
 
-                librosFavoritos.add(new Book(Libro.getTitulo(), Libro.getDescription(), Libro.getAutor(), Libro.getImagen()));
+                //librosFavoritos.add(new Book(Libro.getTitulo(), Libro.getDescription(), Libro.getAutor(), Libro.getImagen()));
 
                 for (int i = 0; i < librosFavoritos.size(); i++) {
                     Log.d("insertadoTitulo", String.valueOf(librosFavoritos.get(i).getTitulo()));
@@ -96,17 +96,14 @@ public class OpenBook extends AppCompatActivity {
 
                 SharedPreferences sharedPreferences = getSharedPreferences("favoritos", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                Log.d("listaDeLibros", String.valueOf(librosFavoritos.size()));
+                
                 //Gson gson = new Gson();
                 //String json = gson.toJson(librosFavoritos);
-                //Log.d("contenidoJsonOpenBook", String.valueOf(json));
-                libroConcatenado = "";
-                for (int i = 0; i < librosFavoritos.size(); i++) {
-                    Book libro = librosFavoritos.get(i);
-                    libroConcatenado += libro.getTitulo() + ";" + libro.getDescription() + ";" + libro.getAutor() + ";" + libro.getImagen() + ";";
-                }
-                Log.d("libroContatenado", String.valueOf(libroConcatenado));
+                //Log.d("contenidoJsonOpenBook", String.valueOf(json))
+
+                libroConcatenado = Libro.getTitulo() + ";" + Libro.getDescription() + ";" + Libro.getAutor() + ";" + Libro.getImagen() + ";";
+
+                Log.d("libroConcatenado", String.valueOf(libroConcatenado));
                 editor.putString("librosFavoritos", libroConcatenado);
                 editor.commit();
                 /*
