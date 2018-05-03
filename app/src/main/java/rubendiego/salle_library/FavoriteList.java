@@ -47,7 +47,7 @@ public class FavoriteList extends AppCompatActivity {
         //Type type = new TypeToken<ArrayList<Book>>() {}.getType();
         String[] datosLibros = librosConcatenados.split(";");
 
-        for (int i = 0; i < datosLibros.length/4; i=+4) {
+        for (int i = 0; i < datosLibros.length; i+=4) {
             //String[] libros = librosConcatenados.split(";");
             //Log.d("libros:", String.valueOf(libros[i]));
 

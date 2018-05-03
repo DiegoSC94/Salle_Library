@@ -96,12 +96,17 @@ public class OpenBook extends AppCompatActivity {
 
                 SharedPreferences sharedPreferences = getSharedPreferences("favoritos", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                
+
                 //Gson gson = new Gson();
                 //String json = gson.toJson(librosFavoritos);
                 //Log.d("contenidoJsonOpenBook", String.valueOf(json))
 
-                libroConcatenado = Libro.getTitulo() + ";" + Libro.getDescription() + ";" + Libro.getAutor() + ";" + Libro.getImagen() + ";";
+                if (sharedPreferences.getString("librosFavoritos", null)!=null){
+                    libroConcatenado = sharedPreferences.getString("librosFavoritos", null);
+                }else{
+                    libroConcatenado = "";
+                }
+                libroConcatenado += Libro.getTitulo() + ";" + Libro.getDescription() + ";" + Libro.getAutor() + ";" + Libro.getImagen() + ";";
 
                 Log.d("libroConcatenado", String.valueOf(libroConcatenado));
                 editor.putString("librosFavoritos", libroConcatenado);
