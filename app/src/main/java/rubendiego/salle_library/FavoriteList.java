@@ -6,6 +6,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -103,5 +106,34 @@ public class FavoriteList extends AppCompatActivity {
         if (librosFavoritos == null){
             librosFavoritos = new ArrayList<>();
         }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.menu_favoritos, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delBar:
+
+                SharedPreferences sharedPreferences = getSharedPreferences("favoritos", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                String libroConcatenado = "";
+
+                editor.putString("librosFavoritos", libroConcatenado);
+
+                break;
+
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

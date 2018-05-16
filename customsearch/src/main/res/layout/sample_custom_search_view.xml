@@ -18,7 +18,8 @@
         android:layout_width="@dimen/size0"
         android:layout_height="@dimen/size48"
         android:layout_weight="5"
-        android:hint="@string/buscar" />
+        android:hint="@string/buscar"
+        android:inputType="textPersonName"/>
 
     <ImageButton
         android:id="@+id/cancel"
