@@ -44,23 +44,23 @@ public class ConexionApi {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();//conectamos
 
-            //leemos la respuesta con imput string y stringbuffered despues lo convertimos a string
+            //leemos la respuesta con imput string y stringBuildered despues lo convertimos a string
             InputStream inputStream = urlConnection.getInputStream();
-            StringBuffer stringBuffer = new StringBuffer();
+            StringBuilder stringBuilder = new StringBuilder();
             if (inputStream == null) {
                 return null;
             }
             reader = new BufferedReader(new InputStreamReader(inputStream));
             String line;
             while ((line = reader.readLine()) != null) {
-                stringBuffer.append(line + "\n");//en cada linea si lo que recoge no es nulo hace ubbna linea y si salto
+                stringBuilder.append(line + "\n");//en cada linea si lo que recoge no es nulo hace ubbna linea y si salto
             }
 
-            if (stringBuffer.length() == 0) {
+            if (stringBuilder.length() == 0) {
                 return null;//si no coje nada sale y retorna null
             }
 
-            bookJSON = stringBuffer.toString();
+            bookJSON = stringBuilder.toString();
 
         } catch (Exception ex) {
             ex.printStackTrace();//printa el error

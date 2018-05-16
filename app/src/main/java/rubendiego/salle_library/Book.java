@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Diego y Ruben on 10/03/2018.
  */
 
-public class Book extends ArrayList implements Parcelable {
+public class Book implements Parcelable {
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
         @Override

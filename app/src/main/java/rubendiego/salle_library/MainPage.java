@@ -59,7 +59,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
                 SharedPreferences.Editor editor = datos.edit();
                 editor.putBoolean("sesion", false);
 
-                editor.commit();
+                editor.apply();
                 Intent intent = new Intent(this, LoginRegis.class);
                 startActivity(intent);
                 break;
@@ -90,8 +90,6 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Book bookList = (Book) listView.getItemAtPosition(position);
-
-        Toast.makeText(getApplication(), (CharSequence) bookList.titulo, Toast.LENGTH_LONG).show();
 
         Book libro = (Book) bookList;
 

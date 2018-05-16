@@ -112,31 +112,37 @@ public class OpenBook extends AppCompatActivity {
 
                 String[] datosLibros = libroConcatenado.split(";");
 
-                existe = false;
-
+                if(Libro.getTitulo().isEmpty()){
+                    Libro.setTitulo(".");
+                }else if(Libro.getAutor().isEmpty()){
+                    Libro.setAutor("");
+                }else if(Libro.getDescription().isEmpty()){
+                    Libro.setDescription("");
+                }else if(Libro.getImagen().isEmpty()){
+                    Libro.setImagen("");
+                }
                 for (int i = 0; i < datosLibros.length; i+=4) {
 
+                    /*
                     Log.d("datosLibrosTitulo:", String.valueOf(datosLibros[i]));
                     Log.d("datosClaseLibrosTitulo:", String.valueOf(Libro.getTitulo()));
                     Log.d("datosLibrosDescripcion:", String.valueOf(datosLibros[i+1]));
                     Log.d("datosLibrosAutores:", String.valueOf(datosLibros[i+2]));
                     Log.d("datosLibrosImagen:", String.valueOf(datosLibros[i+3]));
-
-                    if (datosLibros[i].equals(Libro.titulo)){
+*/
+                    if (datosLibros[i].equals(Libro.getTitulo())){
                         existe = true;
                     }
 
-                    librosFavoritos.add(Libro);
-
                 }
                 if (!existe){
-                    Log.d("Ha insertado el libro", String.valueOf(existe));
+                    Toast.makeText(getApplicationContext(),"El libro ha sido insertado", Toast.LENGTH_SHORT).show();
                     libroConcatenado += Libro.getTitulo() + ";" + Libro.getDescription() + ";" + Libro.getAutor() + ";" + Libro.getImagen() + ";";
                     editor.putString("librosFavoritos", libroConcatenado);
                     editor.apply();
                 }
                 else{
-                    Log.d("No ha insertado libro", String.valueOf(existe));
+                    Toast.makeText(getApplicationContext(),"El libro ya esta en la lista de favoritos", Toast.LENGTH_SHORT).show();
                 }
 
                 /*
